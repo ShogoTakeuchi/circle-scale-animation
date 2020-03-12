@@ -1,0 +1,10 @@
+<resources>
+    <string name="app_name">CircleScaleAnimation</string>
+    <string name="title">Hello</string>
+    <string name="question">How are you doing?</string>
+    <string name="answered">Thank you !</string>
+    <string name="patternA">A</string>
+    <string name="patternB">B</string>
+    <string name="patternC">C</string>
+    <string name="patternD">D</string>
+</resources>
