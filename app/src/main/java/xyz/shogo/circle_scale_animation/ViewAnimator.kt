@@ -63,6 +63,12 @@ class ViewAnimator : BaseObservable() {
         }
     }
 
+    fun disappearCompletionLayout() {
+        completionAlpha = 0.0f
+        baseAlpha = 1.0f
+        resultViewAlpha = 0.0f
+    }
+
     fun moveCompletionParts(
         pushedButton: FrameLayout?,
         circleView: CircleView?,
@@ -121,6 +127,15 @@ class ViewAnimator : BaseObservable() {
         resultView.startAnimation(translateAnimation)
     }
 
+    fun resetResultView(resultView: FrameLayout?) {
+        resultView ?: return
+        val translateAnimation = TranslateAnimation(0f, 0f, 0f, 0f)
+        translateAnimation.setDuration(800)
+        translateAnimation.setRepeatCount(0)
+        translateAnimation.setFillAfter(true)
+        resultView.startAnimation(translateAnimation)
+    }
+
     private fun centeringAnswerdTextView(textView: TextView?) {
         textView ?: return
         ValueAnimator.ofFloat(0f, 1f).apply {
@@ -131,6 +146,16 @@ class ViewAnimator : BaseObservable() {
             start()
         }
         val translateAnimation = TranslateAnimation(0f, 0f, 0f, -50f)
+        translateAnimation.setDuration(800)
+        translateAnimation.setRepeatCount(0)
+        translateAnimation.setFillAfter(true)
+        textView.startAnimation(translateAnimation)
+    }
+
+    fun resetAnswerdTextView(textView: TextView?) {
+        textView ?: return
+        answeredTextViewAlpha = 0.0f
+        val translateAnimation = TranslateAnimation(0f, 0f, 0f, 0f)
         translateAnimation.setDuration(800)
         translateAnimation.setRepeatCount(0)
         translateAnimation.setFillAfter(true)

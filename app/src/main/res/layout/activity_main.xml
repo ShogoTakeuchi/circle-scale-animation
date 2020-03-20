@@ -10,7 +10,7 @@
             type="xyz.shogo.circle_scale_animation.MainActivity" />
 
         <variable
-            name="viewAnimator"
+            name="animator"
             type="xyz.shogo.circle_scale_animation.ViewAnimator" />
     </data>
 
@@ -23,8 +23,8 @@
             android:id="@+id/baseLayout"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_margin="20dp"
-            android:alpha="@{viewAnimator.baseAlpha}"
+            android:layout_margin="30dp"
+            android:alpha="@{animator.baseAlpha}"
             android:orientation="vertical">
 
             <LinearLayout
@@ -88,7 +88,6 @@
                         android:textColor="#D0021B"
                         android:textSize="30sp"
                         android:textStyle="bold" />
-
                 </LinearLayout>
             </LinearLayout>
 
@@ -113,7 +112,7 @@
                     <ImageButton
                         android:layout_width="120dp"
                         android:layout_height="120dp"
-                        android:background="@drawable/so_good"
+                        android:background="@drawable/pattern_a"
                         android:onClick="@{() -> owner.onClickButtonA()}" />
 
                     <TextView
@@ -141,7 +140,7 @@
                     <ImageButton
                         android:layout_width="120dp"
                         android:layout_height="120dp"
-                        android:background="@drawable/good"
+                        android:background="@drawable/pattern_b"
                         android:onClick="@{() -> owner.onClickButtonB()}" />
 
                     <TextView
@@ -169,7 +168,7 @@
                     <ImageButton
                         android:layout_width="120dp"
                         android:layout_height="120dp"
-                        android:background="@drawable/bad"
+                        android:background="@drawable/pattern_c"
                         android:onClick="@{() -> owner.onClickButtonC()}" />
 
                     <TextView
@@ -197,7 +196,7 @@
                     <ImageButton
                         android:layout_width="120dp"
                         android:layout_height="120dp"
-                        android:background="@drawable/so_bad"
+                        android:background="@drawable/pattern_d"
                         android:onClick="@{() -> owner.onClickButtonD()}" />
 
                     <TextView
@@ -215,7 +214,6 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="1" />
-
             </LinearLayout>
         </LinearLayout>
 
@@ -223,7 +221,7 @@
             android:id="@+id/completionLayout"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:alpha="@{viewAnimator.completionAlpha}"
+            android:alpha="@{animator.completionAlpha}"
             android:background="@android:color/transparent"
             android:orientation="vertical">
 
@@ -236,7 +234,7 @@
                 android:id="@+id/resultView"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:alpha="@{viewAnimator.resultViewAlpha}"
+                android:alpha="@{animator.resultViewAlpha}"
                 android:orientation="vertical">
 
                 <ImageView
@@ -249,7 +247,7 @@
                     android:layout_width="120dp"
                     android:layout_height="120dp"
                     android:gravity="center"
-                    android:text="@{viewAnimator.completionText}"
+                    android:text="@{animator.completionText}"
                     android:textAlignment="center"
                     android:textColor="#FFFFFF"
                     android:textSize="32sp"
@@ -263,7 +261,7 @@
                 android:layout_gravity="center"
                 android:layout_marginTop="40dp"
                 android:layout_marginBottom="80dp"
-                android:alpha="@{viewAnimator.answeredTextViewAlpha}"
+                android:alpha="@{animator.answeredTextViewAlpha}"
                 android:text="@string/answered"
                 android:textAlignment="center"
                 android:textColor="#FFFFFF"

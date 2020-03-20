@@ -19,37 +19,36 @@ class CircleView @JvmOverloads constructor(
     private var angle = 360F
     private var x: Int = 0
     private var y: Int = 0
-    var isInit = true
+    private var isInit = true
 
     companion object {
         private const val angleTarget = 0F
     }
 
     init {
-        this.paint.isAntiAlias = true
-        this.paint.style = Paint.Style.FILL_AND_STROKE
-        this.paint.color = ContextCompat.getColor(context, R.color.colorAccent)
+        paint.isAntiAlias = true
+        paint.style = Paint.Style.FILL_AND_STROKE
+        paint.color = ContextCompat.getColor(context, R.color.colorAccent)
     }
 
-    @SuppressLint("CanvasSize")
     public override fun onDraw(canvas: Canvas) {
         super.onDraw(canvas)
         if (isInit) {
-            this.x = canvas.width / 2
-            this.y = canvas.height / 2
+            x = canvas.width / 2
+            y = canvas.height / 2
             isInit = false
         }
         canvas.drawColor(ContextCompat.getColor(context, R.color.transparent))
         var radius = 40
-        val left = this.x - radius
-        val top = this.y - radius
-        val right = this.x + radius
-        val bottom = this.y + radius
-        this.rect.set(left.toFloat(), top.toFloat(), right.toFloat(), bottom.toFloat())
-        canvas.drawArc(this.rect, angleTarget, this.angle, false, this.paint)
+        val left = x - radius
+        val top = y - radius
+        val right = x + radius
+        val bottom = y + radius
+        rect.set(left.toFloat(), top.toFloat(), right.toFloat(), bottom.toFloat())
+        canvas.drawArc(rect, angleTarget, angle, false, paint)
     }
 
     fun changeColor(@ColorRes colorId: Int) {
-        this.paint.color = ContextCompat.getColor(context, colorId)
+        paint.color = ContextCompat.getColor(context, colorId)
     }
 }

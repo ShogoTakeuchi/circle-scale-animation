@@ -2,11 +2,12 @@ package xyz.shogo.circle_scale_animation
 
 import android.app.Activity
 import android.os.Bundle
+import android.os.Handler
+import android.os.Looper
 import android.view.ViewGroup
 import android.widget.FrameLayout
 import androidx.annotation.ColorRes
 import androidx.annotation.StringRes
-import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import xyz.shogo.circle_scale_animation.databinding.ActivityMainBinding
 
@@ -20,33 +21,37 @@ class MainActivity : Activity() {
         setContentView(R.layout.activity_main)
         binding = DataBindingUtil.setContentView(this, R.layout.activity_main)
         binding?.owner = this
-        binding?.viewAnimator = animator
+        binding?.animator = animator
     }
 
     fun onClickButtonA() {
         disableEnableControls(false, binding?.baseLayout)
-        animateCompletion(R.string.patternA, binding?.buttonA, R.color.patternA)
+        animateCompletion(binding?.buttonA, R.string.patternA, R.color.patternA)
+        resetView()
     }
 
     fun onClickButtonB() {
         disableEnableControls(false, binding?.baseLayout)
-        animateCompletion(R.string.patternB, binding?.buttonB, R.color.patternB)
+        animateCompletion(binding?.buttonB, R.string.patternB, R.color.patternB)
+        resetView()
     }
 
     fun onClickButtonC() {
         disableEnableControls(false, binding?.baseLayout)
-        animateCompletion(R.string.patternC, binding?.buttonC, R.color.patternC)
+        animateCompletion(binding?.buttonC, R.string.patternC, R.color.patternC)
+        resetView()
     }
 
     fun onClickButtonD() {
         disableEnableControls(false, binding?.baseLayout)
-        animateCompletion(R.string.patternD, binding?.buttonD, R.color.patternD)
+        animateCompletion(binding?.buttonD, R.string.patternD, R.color.patternD)
+        resetView()
     }
 
-    private fun disableEnableControls(enable: Boolean, vg: ViewGroup?) {
-        vg ?: return
-        for (i in 0 until vg.childCount) {
-            val child = vg.getChildAt(i)
+    private fun disableEnableControls(enable: Boolean, viewGroup: ViewGroup?) {
+        viewGroup ?: return
+        for (i in 0 until viewGroup.childCount) {
+            val child = viewGroup.getChildAt(i)
             child.isEnabled = enable
             if (child is ViewGroup) {
                 disableEnableControls(enable, child)
@@ -55,8 +60,8 @@ class MainActivity : Activity() {
     }
 
     private fun animateCompletion(
-        @StringRes textId: Int,
         button: FrameLayout?,
+        @StringRes textId: Int,
         @ColorRes colorId: Int
     ) {
         binding?.circleView?.changeColor(colorId)
@@ -75,5 +80,14 @@ class MainActivity : Activity() {
                 it
             )
         }
+    }
+
+    private fun resetView() {
+        Handler(Looper.getMainLooper()).postDelayed(Runnable {
+            animator.disappearCompletionLayout()
+            animator?.resetResultView(binding?.resultView)
+            animator.resetAnswerdTextView(binding?.answeredTextView)
+            disableEnableControls(true, binding?.baseLayout)
+        }, 3000)
     }
 }
